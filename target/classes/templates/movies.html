@@ -24,32 +24,29 @@
 				<div th:each="bestmovie : ${bestMovies}" class="col">
 				
 					<div class="card mb-3 img-thumbnail" style="width: 20rem;">
-						<img th:src="@{images/europe.jpg}" class="card-img-top">
+						<img th:src="@{images/films.jpg}" class="card-img-top">
 						<title>Placeholder</title>
 						<rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef"
 							dy=".3em"></text>
 						</svg>
 						<div class="card-body">
 							<p class="card-text">
-								<a th:text="${bestmovie.title}"></a>
 								<font style="vertical-align: inherit;">
-									<font style="vertical-align: inherit;">Si tratta di una scheda più ampia con
-										testo
-										di supporto riportato di seguito come naturale introduzione a contenuti
-										aggiuntivi. Questo contenuto è un po' più lungo.</font>
+									<a
+									th:fragment="button(link, title,id)"
+									th:href="@{/movies/{id}(id=${bestmovie.getId()})}"
+									th:text="${bestmovie.title}"
+									class="btn btn-primary"
+									>
+									</a>
 								</font>
 							</p>
-							<div class="d-flex justify-content-between align-items-center">
-								<small class="text-muted">
-									<font style="vertical-align: inherit;">
-										<font style="vertical-align: inherit;">9 minuti</font>
-									</font>
-								</small>
-							</div>
 						</div>
 					</div>
 					
 				</div>
+				
+				
 				
 			</div>
 		</div>
