@@ -15,8 +15,8 @@ import org.springframework.ui.Model;
 @Controller
 public class Mycontroller {
 	@GetMapping("/")
-	public String nome(@RequestParam(name="name") String nome, Model model) {
-       model.addAttribute("name", nome); 
+	public String nome() {
+       
 		return "greetings1";
 	}
 
@@ -46,7 +46,7 @@ public class Mycontroller {
 	public String movies(Model model) {
 		ArrayList<Movie> bestMovies=getBestMovies();
 		model.addAttribute("bestMovies",bestMovies);
-		return "greetings1";
+		return "movies";
 		
 		
 	}
@@ -59,4 +59,10 @@ public class Mycontroller {
 	}
 	
 
+	@GetMapping("/songs/{id}")
+	public String songs(@RequestParam(name= "id") int id,Model model) {
+		ArrayList<Songs>bestSongs=getBestSongs();
+		model.addAttribute("bestSongs",bestSongs);
+		return "songs";
+	}
 }
