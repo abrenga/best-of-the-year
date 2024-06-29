@@ -16,7 +16,7 @@
 	<div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
 		<div class="my-3 p-3">
 			<h1 th:text="${movie.title}" class="text-light bg-dark bg-whitedisplay-4 fst-italic"></h1>
-			<p class="lead mb-0"><a class=" text-body-emphasis fw-bold">
+			<p class="lead mb-0"><a th:href="@{/table/{title}(title=${movie.getTitle()})}" class=" text-body-emphasis fw-bold">
 					inserisci il film nella lista dei preferiti qui:
 			</p>
 

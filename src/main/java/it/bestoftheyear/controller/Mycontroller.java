@@ -3,14 +3,14 @@ package it.bestoftheyear.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import it.bestoftheyear.Movie;
-import it.bestoftheyear.Songs;
+import it.bestoftheyear.model.MovieTable;
+import it.bestoftheyear.repository.DatabaseMyRepository;
 
 import org.springframework.ui.Model;
 
@@ -57,12 +57,27 @@ public class Mycontroller {
 	
 	/*Database*/
 	
-	@GetMapping("/table")
-	public String tableIndex(Model model) {
+	@Autowired
+	private DatabaseMyRepository repository;
+	
+	@GetMapping("/table/{title}")
+	public String tableIndex(@PathVariable(name="title") String nome, Model model) {
+		insertIntoTable(nome);
 		
-		List <Movie> movie = repository.findAll();
-		model.addAttribute("movie", movie);
-		return "table";
+		List<MovieTable> movie = repository.findAll();
+		model.addAttribute("movies", movie);
+		return "table/table";
 	}
+	
+	public void insertIntoTable(String nome) {
+		MovieTable movie = new MovieTable();
+		movie.setTitle(nome);
+		
+		repository.save(movie);
+	}
+	
+	
+	
+	
 
 }
